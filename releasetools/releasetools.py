@@ -1,5 +1,6 @@
-# Copyright (C) 2015 The Android Open Source Project
-# Written by Dmitry Grinberg
+#!/bin/env python3
+#
+# Copyright (C) 2021-2022 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,22 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import common
 
-LOCAL_PATH := $(call my-dir)
+def FullOTA_Assertions(info):
+  OTA_Assertions(info)
+  return
 
-include $(CLEAR_VARS)
+def IncrementalOTA_Assertions(info):
+  OTA_Assertions(info)
+  return
 
-LOCAL_SHARED_LIBRARIES := \
-    liblog \
-    libcutils \
-    libgui_vendor \
-    libbinder \
-    libutils \
-    libsensor
+def OTA_Assertions(info):
+  # Disable VINTF checks
+  common.OPTIONS.skip_compatibility_check = True
 
-LOCAL_SRC_FILES := libshim_dmitry_gps.cpp
-LOCAL_MODULE := libshim_dmitry_gps
-LOCAL_MODULE_TAGS := optional
-LOCAL_VENDOR_MODULE := true
-
-include $(BUILD_SHARED_LIBRARY)

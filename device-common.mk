@@ -14,8 +14,14 @@
 # limitations under the License.
 #
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 COMMON_PATH := device/samsung/universal5420-common
 PRODUCT_ENABLE_UFFD_GC := false
+
+
+# Apex
+PRODUCT_COMPRESSED_APEX := false
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -58,11 +64,11 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 # # Camera
-# PRODUCT_PACKAGES += \
-#     android.hardware.camera.provider@2.4-impl.exynos5420 \
-#     android.hardware.camera.provider@2.4-service \
-#     camera.device@1.0-impl.exynos5420 \
-#     camera.universal5420
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl.exynos5420 \
+    android.hardware.camera.provider@2.4-service \
+    camera.device@1.0-impl.exynos5420 \
+    camera.universal5420
 
 # ConfigStore
 PRODUCT_PACKAGES += \
@@ -76,6 +82,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
+    android.hardware.drm@1.1.vendor
  #   android.hardware.drm@1.4-service.clearkey
 
 # GNNS
@@ -99,7 +106,12 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
     libhwc2on1adapter \
-    gralloc.exynos5
+    gralloc.exynos5 \
+    libui.vendor \
+    libstdc++.vendor \
+    android.hardware.graphics.allocator@2.0.vendor \
+    android.hardware.graphics.allocator@3.0.vendor \
+    android.hardware.graphics.allocator@4.0.vendor
     
 # Health
 PRODUCT_PACKAGES += \
@@ -110,7 +122,9 @@ PRODUCT_PACKAGES += \
 # HIDL
 PRODUCT_PACKAGES += \
     libhidltransport \
-    libhwbinder
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
 
 PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
 
@@ -221,8 +235,8 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libgutils
-        #libshim_camera \
+    libgutils \
+    libshim_camera
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -248,10 +262,20 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
+# VNDK
+PRODUCT_PACKAGES += \
+    libicuuc.vendor
+
 # VNDK prebuilts
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-lite-v29.so
-
+# HAXX for egl to work 
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libui.so \
+    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/libgui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgui.so \
+    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@2.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@2.0.so \
+    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@3.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@3.0.so \
+    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@4.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@4.0.so
 # Wifi
 PRODUCT_PACKAGES += \
     wifiloader \

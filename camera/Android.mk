@@ -26,7 +26,6 @@ LOCAL_SHARED_LIBRARIES := \
     libbinder \
     libhardware \
     liblog \
-    libcamera_client \
     libgui_vendor \
     libhidlbase \
     libutils \
@@ -35,7 +34,8 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_STATIC_LIBRARIES := \
     libarect \
     libbase \
-    libminui
+    libminui \
+    android.hardware.camera.common@1.0-helper
 
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 
@@ -78,7 +78,6 @@ LOCAL_SHARED_LIBRARIES := \
     libbinder \
     libhardware \
     liblog \
-    libcamera_client \
     libgui_vendor \
     libhidlbase \
     libutils \
@@ -90,7 +89,8 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_STATIC_LIBRARIES := \
     libarect \
     libbase \
-    libminui
+    libminui \
+    android.hardware.camera.common@1.0-helper
 
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 

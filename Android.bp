@@ -1,3 +1,8 @@
-subdirs = [
-    "hardware",
-]
+soong_namespace {
+
+}
+
+    filegroup{
+    name: "vnd_universal5420.txt",
+    srcs: ["bluetooth/vnd_universal5420.txt"]
+    }

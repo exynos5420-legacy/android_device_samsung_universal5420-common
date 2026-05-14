@@ -38,7 +38,6 @@ BOARD_HAVE_BLUETOOTH := true
 PRODUCT_SOONG_NAMESPACES += hardware/broadcom/libbt
 $(call soong_config_set,brcm_libbt,custom_bt_config,//device/samsung/universal5420-common:vnd_universal5420.txt)
 $(call soong_config_set,brcm_libbt,bdroid_buildcfg_include_dir,$(COMMON_PATH)/bluetooth)
-BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 
 # Camera
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
@@ -53,9 +52,6 @@ TARGET_CPU_VARIANT_RUNTIME := cortex-a15
 
 # Compatibility Matrix
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
-
-# Dedupe VNDK libraries with identical core variants.
-TARGET_VNDK_USE_CORE_VARIANT := true
 
 # Dexpreopt
 ifeq ($(HOST_OS),linux)

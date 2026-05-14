@@ -8,7 +8,7 @@ LOCAL_SHARED_LIBRARIES := \
     libgui_vendor \
     libbinder \
     libutils \
-    libsensor
+    libsensor_vendor
 
 LOCAL_MODULE := libshim_gpsd
 LOCAL_SRC_FILES := libshim_gpsd.cpp

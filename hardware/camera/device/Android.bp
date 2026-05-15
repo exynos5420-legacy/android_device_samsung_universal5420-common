@@ -27,6 +27,7 @@ cc_library_shared {
         "libbinder",
         "libbase",
         "libion",
+        "libui",
     ],
     static_libs: [
         "android.hardware.camera.common@1.0-helper"

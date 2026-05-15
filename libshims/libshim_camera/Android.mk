@@ -8,11 +8,9 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_VENDOR_MODULE := true
 
-LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libhardware libion
+LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client libhardware libion
 LOCAL_SHARED_LIBRARIES += libcsc libexynosutils libhwjpeg libexynosv4l2 libexynosgscaler libion_exynos
 LOCAL_SHARED_LIBRARIES += libexpat libpower
-LOCAL_STATIC_LIBRARIES := android.hardware.camera.common@1.0-helper
-
 
 LOCAL_CFLAGS += -Wno-unused-parameter
 #LOCAL_CFLAGS += -DGAIA_FW_BETA

@@ -1,0 +1,8 @@
+
+
+cc_library_shared {
+    name: "libshim_atomic",
+    srcs: ["atomic.cpp"],
+
+    vendor: true,
+}

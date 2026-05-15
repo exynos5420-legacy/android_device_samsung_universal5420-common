@@ -1,0 +1,19 @@
+
+
+cc_library_shared {
+    name: "libshim_gpsd",
+
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libgui_vendor",
+        "libbinder",
+        "libutils",
+        "libsensor_vendor",
+    ],
+
+    srcs: ["libshim_gpsd.cpp"],
+
+    vendor: true,
+
+}

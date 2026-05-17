@@ -26,7 +26,6 @@ LOCAL_SHARED_LIBRARIES := \
     libbinder \
     libhardware \
     liblog \
-    libcamera_client \
     libgui_vendor \
     libhidlbase \
     libutils \
@@ -35,13 +34,14 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_STATIC_LIBRARIES := \
     libarect \
     libbase \
-    libminui
+    libminui \
+    android.hardware.camera.common@1.0-helper
 
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 
 LOCAL_C_INCLUDES += \
     system/media/camera/include \
-    framworks/av/include/camera
+    frameworks/av/include/camera
 
 LOCAL_SRC_FILES:= \
     ExynosCameraHWImpl.cpp
@@ -67,7 +67,7 @@ LOCAL_MODULE_RELATIVE_PATH := hw
 
 LOCAL_C_INCLUDES += \
     system/media/camera/include \
-    framworks/av/include/camera
+    frameworks/av/include/camera
 
 LOCAL_SRC_FILES := \
     ExynosCameraHWInterface.cpp
@@ -78,7 +78,6 @@ LOCAL_SHARED_LIBRARIES := \
     libbinder \
     libhardware \
     liblog \
-    libcamera_client \
     libgui_vendor \
     libhidlbase \
     libutils \
@@ -90,7 +89,8 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_STATIC_LIBRARIES := \
     libarect \
     libbase \
-    libminui
+    libminui \
+    android.hardware.camera.common@1.0-helper
 
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 

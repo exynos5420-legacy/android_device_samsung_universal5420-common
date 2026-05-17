@@ -2,7 +2,7 @@
 # Daemons
 #
 
-/(vendor|system/vendor)/modemloader					u:object_r:modemloader_exec:s0
+/(vendor|system/vendor)/bin/modemloader					u:object_r:modemloader_exec:s0
 /(vendor|system/vendor)/bin/sensorhubservice				u:object_r:sensorhubservice_exec:s0
 /(vendor|system/vendor)/bin/vcsFPService      u:object_r:vcsFPService_exec:s0
 /(vendor|system/vendor)/bin/wifiloader        u:object_r:wifiloader_exec:s0

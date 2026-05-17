@@ -153,4 +153,15 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl">
+        <name>vendor.lineage.touch</name>
+        <version>1</version>
+        <fqname>ITouchscreenGesture/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.lineage.livedisplay</name>
+        <version>1</version>
+        <fqname>IDisplayModes/default</fqname>
+        <fqname>IReadingEnhancement/default</fqname>
+    </hal>
 </manifest>

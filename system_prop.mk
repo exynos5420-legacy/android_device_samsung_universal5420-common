@@ -26,15 +26,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.bluetooth.disableabsvol=true
-
-# BPF
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.ebpf.supported=false
-
-# fastbootd
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.fastbootd.available=true
-
+    
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.winupdate=0 \

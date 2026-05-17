@@ -22,6 +22,7 @@ PRODUCT_ENABLE_UFFD_GC := false
 
 # Apex
 PRODUCT_COMPRESSED_APEX := false
+OVERRIDE_PRODUCT_COMPRESSED_APEX := false
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -39,7 +40,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.universal5420 \
     android.hardware.audio.service \
     android.hardware.audio@7.0-impl \
     android.hardware.audio.effect@7.0-impl \
@@ -67,8 +67,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl.exynos5420 \
     android.hardware.camera.provider@2.4-service \
-    camera.device@1.0-impl.exynos5420 \
-    camera.universal5420
+    camera.device@1.0-impl.exynos5420
 
 # ConfigStore
 PRODUCT_PACKAGES += \
@@ -108,16 +107,14 @@ PRODUCT_PACKAGES += \
     libhwc2on1adapter \
     gralloc.exynos5 \
     libui.vendor \
-    libstdc++.vendor \
+    libstdc++_vendor \
     android.hardware.graphics.allocator@2.0.vendor \
     android.hardware.graphics.allocator@3.0.vendor \
     android.hardware.graphics.allocator@4.0.vendor
     
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-impl.recovery \
-    android.hardware.health@2.1-service
+    android.hardware.health-service.samsung
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -142,7 +139,7 @@ PRODUCT_PACKAGES += \
 
 # Livedisplay
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service.samsung-exynos
+    vendor.lineage.livedisplay-service.samsung-exynos
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -159,9 +156,9 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service
 
 # Network
-PRODUCT_PACKAGES +=  \
-    InProcessNetworkStack \
-    com.android.tethering.inprocess
+# PRODUCT_PACKAGES +=  \
+#     InProcessNetworkStack \
+#     com.android.tethering.inprocess
 
 # Power
 # PRODUCT_PACKAGES += \
@@ -247,7 +244,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Touch features
 PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.samsung
+    vendor.lineage.touch-service.samsung
 
 # Trust HAL
 # PRODUCT_PACKAGES += \
@@ -262,30 +259,27 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
-# VNDK
-PRODUCT_PACKAGES += \
-    libicuuc.vendor
-
 # VNDK prebuilts
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-lite-v29.so
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-lite-v29 \
+    android.hardware.graphics.common-V4-ndk \
+    libui-v34
+    
 # HAXX for egl to work 
+# libgui.so is copied from proprietary files cause it needs patching to work on Android 16
 PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libui.so \
-    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/libgui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgui.so \
-    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@2.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@2.0.so \
-    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@3.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@3.0.so \
-    prebuilts/vndk/v32/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@4.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@4.0.so
+    prebuilts/vndk/v34/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@2.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@2.0.so \
+    prebuilts/vndk/v34/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@3.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@3.0.so \
+    prebuilts/vndk/v34/arm/arch-arm-armv7-a-neon/shared/vndk-core/android.hardware.graphics.allocator@4.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.graphics.allocator@4.0.so
+
 # Wifi
 PRODUCT_PACKAGES += \
-    wifiloader \
     hostapd \
     wificond \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf \
-    android.hardware.wifi@1.0-service.legacy
-      #android.hardware.wifi@1.0-impl \
+    android.hardware.wifi-service
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \

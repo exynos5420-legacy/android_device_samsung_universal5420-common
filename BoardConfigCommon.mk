@@ -19,13 +19,13 @@ COMMON_PATH := device/samsung/universal5420-common
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
+# A/B
+AB_OTA_UPDATER := false
+
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
 
 # Audio
-ifneq ($(TARGET_DEVICE), ha3g)
-TARGET_AUDIOHAL_VARIANT := samsung
-endif
 USE_XML_AUDIO_POLICY_CONF := 1
 AUDIOSERVER_MULTILIB := 32
 BOARD_SUPPORTS_SOUND_TRIGGER := true
@@ -150,11 +150,11 @@ BOARD_USES_GSC_VIDEO := true
 BOARD_USES_ONLY_GSC0_GSC1 := true
 
 # SELinux
-#include device/lineage/sepolicy/exynos/sepolicy.mk
-#BOARD_SEPOLICY_TEE_FLAVOR := mobicore
-#include device/samsung_slsi/sepolicy/sepolicy.mk
-#BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-#SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
+include device/lineage/sepolicy/exynos/sepolicy.mk
+BOARD_SEPOLICY_TEE_FLAVOR := mobicore
+include device/samsung_slsi/sepolicy/sepolicy.mk
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 # For legacy HAL1 camera
 SELINUX_IGNORE_NEVERALLOWS := true
 
@@ -178,6 +178,9 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA          := "/vendor/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/vendor/etc/wifi/bcmdhd_apsta.bin"
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
+
+
+TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # Inherit from the proprietary version
 include vendor/samsung/universal5420-common/BoardConfigVendor.mk

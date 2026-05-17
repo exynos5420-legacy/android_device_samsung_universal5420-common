@@ -1,0 +1,3 @@
+ro.fastbootd.available=true
+ro.bpf.kver_override=5.4.300
+ro.hardware.egl=mali

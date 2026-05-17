@@ -233,7 +233,8 @@ PRODUCT_COPY_FILES += \
 # Shims
 PRODUCT_PACKAGES += \
     libgutils \
-    libshim_camera
+    libshim_camera \
+    libshim_dmitry_gps
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

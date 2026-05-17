@@ -158,11 +158,6 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 # For legacy HAL1 camera
 SELINUX_IGNORE_NEVERALLOWS := true
 
-# Shims
-TARGET_LD_SHIM_LIBS += \
-    /vendor/lib/egl/libGLES_mali.so|/vendor/lib/libgutils.so \
-    /vendor/lib/libexynoscamera.so|/vendor/lib/libshim_camera.so
-
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/hw/rild=27
 

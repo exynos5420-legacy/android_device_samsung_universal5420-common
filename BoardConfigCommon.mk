@@ -36,11 +36,7 @@ BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 PRODUCT_SOONG_NAMESPACES += hardware/broadcom/libbt
-$(call soong_config_set,brcm_libbt,custom_bt_config,//device/samsung/universal5420-common:vnd_universal5420.txt)
-$(call soong_config_set,brcm_libbt,bdroid_buildcfg_include_dir,$(COMMON_PATH)/bluetooth)
 
-# Camera
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # CPU
 TARGET_ARCH := arm

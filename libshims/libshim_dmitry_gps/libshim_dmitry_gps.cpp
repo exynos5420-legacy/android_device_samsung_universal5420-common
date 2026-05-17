@@ -72,11 +72,11 @@ extern "C" {
 //android::String16::~String16()
   void _ZN7android8String16D1Ev(void **str16P);
 
-//android::SensorManager::~SensorManager()
-  void _ZN7android13SensorManagerD1Ev(void *sensorMgr);
+//android::SensorManager::~SensorManager() - stubbed, removed in newer libsensor
+  void _ZN7android13SensorManagerD1Ev(void *sensorMgr) {}
 
-//android::SensorManager::SensorManager(android::String16 const&)
-  void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P);
+//android::SensorManager::SensorManager(android::String16 const&) - stubbed, replaced by getInstanceForPackage
+  void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P) {}
 
 //android::SensorManager::createEventQueue(android::String8, int)
   void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);

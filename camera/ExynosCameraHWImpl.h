@@ -26,9 +26,8 @@
 #include <binder/MemoryHeapBase.h>
 #include <hardware/camera.h>
 #include <hardware/gralloc.h>
-#include <camera/Camera.h>
-#include <camera/CameraParameters.h>
 #include <media/hardware/MetadataBufferType.h>
+#include <CameraParameters.h>
 
 #include <fcntl.h>
 #include <sys/mman.h>
@@ -61,7 +60,7 @@ public:
        related lock is m_startStopLock; */
     status_t    startPreviewLocked();
     void        stopPreviewLocked();
-    status_t    setParametersLocked(const CameraParameters& params);
+    status_t    setParametersLocked(const hardware::camera::common::helper::CameraParameters& params);
     status_t    setPreviewWindowLocked(preview_stream_ops *w);
 
     bool        previewEnabled(); //+28
@@ -79,7 +78,7 @@ public:
     status_t    takePicture(); //+60
     status_t    cancelPicture();
 
-    CameraParameters  getParameters() const; //+72
+    hardware::camera::common::helper::CameraParameters  getParameters() const; //+72
     status_t    sendCommand(int32_t command, int32_t arg1, int32_t arg2);
 
     void        release(); //+80
@@ -112,7 +111,7 @@ priv + 84 = $deviceDump
 priv + 88 = cameraId
 #endif
 private:
-  CameraParameters m_params;
+  hardware::camera::common::helper::CameraParameters m_params;
   unsigned int reserved[1053];
   
   //0x24

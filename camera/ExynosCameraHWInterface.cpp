@@ -623,7 +623,7 @@ int HAL_camera_device_set_parameters(struct camera_device *dev,
 
     ALOGV("DEBUG(%s):", __func__);
     String8 str(parms);
-    CameraParameters p(str);
+    hardware::camera::common::helper::CameraParameters p(str);
     return obj(dev)->setParametersLocked(p);
 }
 
@@ -634,9 +634,9 @@ char *HAL_camera_device_get_parameters(struct camera_device *dev)
 
     ALOGV("DEBUG(%s):", __func__);
     String8 str;
-    CameraParameters parms = obj(dev)->getParameters();
+    hardware::camera::common::helper::CameraParameters parms = obj(dev)->getParameters();
     str = parms.flatten();
-    return strdup(str.string());
+    return strdup(str.c_str());
 }
 
 void HAL_camera_device_put_parameters(struct camera_device *dev, char *parms)
@@ -722,7 +722,7 @@ int HAL_getCameraInfo(int cameraId, struct camera_info *info)
         return -EINVAL;
     }
 
-    memcpy(info, &sCameraInfo[cameraId], sizeof(CameraInfo));
+    memcpy(info, &sCameraInfo[cameraId], sizeof(CameraInfoLegacy));
     info->device_version = CAMERA_DEVICE_API_VERSION_1_0;
 
     return NO_ERROR;

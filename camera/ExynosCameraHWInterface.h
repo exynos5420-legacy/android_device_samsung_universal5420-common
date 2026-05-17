@@ -39,9 +39,8 @@
 #include <binder/MemoryHeapBase.h>
 #include <hardware/camera.h>
 #include <hardware/gralloc.h>
-#include <camera/Camera.h>
-#include <camera/CameraParameters.h>
 #include <media/hardware/MetadataBufferType.h>
+#include <CameraParameters.h>
 
 //#include "exynos_format.h"
 //#include "csc.h"
@@ -49,6 +48,8 @@
 
 #include <fcntl.h>
 #include <sys/mman.h>
+
+
 
 namespace android {
 
@@ -120,8 +121,8 @@ public:
     virtual status_t    takePicture() = 0;
     virtual status_t    cancelPicture() = 0;
 
-    virtual status_t    setParametersLocked(const CameraParameters& params) = 0;
-    virtual CameraParameters  getParameters() const = 0;
+    virtual status_t    setParametersLocked(const hardware::camera::common::helper::CameraParameters& params) = 0;
+    virtual hardware::camera::common::helper::CameraParameters  getParameters() const = 0;
     virtual status_t    sendCommand(int32_t command, int32_t arg1, int32_t arg2) = 0;
 
     virtual void        release() = 0;

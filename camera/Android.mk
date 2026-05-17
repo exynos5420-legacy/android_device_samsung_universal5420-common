@@ -40,8 +40,7 @@ LOCAL_STATIC_LIBRARIES := \
 LOCAL_CFLAGS += -DGAIA_FW_BETA
 
 LOCAL_C_INCLUDES += \
-    system/media/camera/include \
-    frameworks/av/include/camera
+    system/media/camera/include
 
 LOCAL_SRC_FILES:= \
     ExynosCameraHWImpl.cpp
@@ -66,8 +65,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_RELATIVE_PATH := hw
 
 LOCAL_C_INCLUDES += \
-    system/media/camera/include \
-    frameworks/av/include/camera
+    system/media/camera/include
 
 LOCAL_SRC_FILES := \
     ExynosCameraHWInterface.cpp
@@ -83,7 +81,7 @@ LOCAL_SHARED_LIBRARIES := \
     libutils \
     android.hidl.token@1.0-utils
 
-    LOCAL_HEADER_LIBRARIES += \
+LOCAL_HEADER_LIBRARIES += \
     media_plugin_headers
 
 LOCAL_STATIC_LIBRARIES := \
@@ -106,7 +104,7 @@ else
 LOCAL_CFLAGS += -DBACK_ROTATION=0
 endif
 
-LOCAL_MODULE := camera.$(TARGET_BOOTLOADER_BOARD_NAME)
+LOCAL_MODULE := camera.legacy.$(TARGET_BOOTLOADER_BOARD_NAME)
 LOCAL_VENDOR_MODULE := true
 
 LOCAL_MODULE_TAGS := optional

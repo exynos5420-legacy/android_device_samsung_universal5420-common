@@ -303,9 +303,8 @@ on fs
     mount_all /vendor/etc/fstab.universal5420
     swapon_all /vendor/etc/fstab.universal5420
 
-    rm /cache/boot_lc_full.txt
-    rm /cache/boot_lc_crash.txt
-    rm /cache/boot_lc_kernel.txt
+    rm -rf /data/log
+    mkdir /data/log
     start boot_lc
     start boot_lc_kernel
     start boot_lc_crash
@@ -354,21 +353,21 @@ service gpsd /vendor/bin/hw/gpsd -c /vendor/etc/gps.xml
     group system inet net_raw wakelock
     ioprio be 0
 
-service boot_lc /system/bin/logcat -b all -D -f /cache/boot_lc_full.txt
+service boot_lc /system/bin/logcat -b all -D -f /data/log/boot_lc_full.txt
     class main
     user root
     group root system
     disabled
     oneshot
 
-service boot_lc_crash /system/bin/logcat -b crash -D -f /cache/boot_lc_crash.txt
+service boot_lc_crash /system/bin/logcat -b crash -D -f /data/log/boot_lc_crash.txt
     class main
     user root
     group root system
     disabled
     oneshot
 
-service boot_lc_kernel /system/bin/logcat -b kernel -D -f /cache/boot_lc_kernel.txt
+service boot_lc_kernel /system/bin/logcat -b kernel -D -f /data/log/boot_lc_kernel.txt
     class main
     user root
     group root system
@@ -382,3 +381,8 @@ on property:ro.bootmode=charger
 on property:sys.boot_completed=1
     chown system radio /sys/class/sec/sec_ir/ir_send
     chown system radio /sys/class/sec/sec_ir/ir_send_result
+
+
+on property:ro.crypto.state=unencrypted && property:vold.post_fs_data_done=1
+    class_start main
+    class_start late_start
